@@ -4,7 +4,7 @@
             <div class="media-left"> 
                 <img src="<?= $args['image'] ?>" class="media-object">
             </div>
-        <?php endif; ?>
+        <?php endif ?>
         <div class="media-body">
             <div class="meta"> 
                 <?php if (!empty($args['date'])): ?>
@@ -12,17 +12,17 @@
                 <?php endif ?>
                 <?php if (!empty($args['author'])): ?>
                     <span class="name"><?= $args['author'] ?></span>
-                <?php endif; ?>
+                <?php endif ?>
             </div>
             <?php if (!empty($args['title'])): ?>
                 <h3>
                     <a href="<?= empty($args['redirect'])
                             ? "#"
-                            : $args['redirect']; ?>">
-                        <?= $args['title']; ?>
+                            : $args['redirect'] ?>">
+                        <?= $args['title'] ?>
                     </a>
                 </h3>
-            <?php endif; ?>
+            <?php endif ?>
         </div>
     </div>
 </article>
