@@ -1,0 +1,78 @@
+[class*="connectedSortable"] {
+    border: 1px solid #eee;
+    width: 45%;
+    min-height: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0 0 0;
+    float: left;
+    margin-right: 10px;
+}
+[class*="connectedSortable"] li {
+    padding: 5px;
+    font-size: 1.2em;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    background: 0;
+    border: 0;
+}
+.select_articles>ul {
+    flex: 1;
+}
+.select_articles {
+    display: flex;
+}
+.select_articles .title {
+    padding: 0 70px;
+    box-sizing: border-box;
+}
+.select_articles .inner {
+    text-align: center;
+    min-height: 50px;
+    background: #e8e8e8;
+    padding: 10px;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+}
+
+span.article_width {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+}
+
+span.article_type.article_width {
+    left: 0;
+    right: auto;
+}
+
+span.article_width.edit {
+    top: auto;
+    bottom: 0;
+    background: #0067bf;
+    border-radius: 10px 0 0;
+    padding: 3px;
+    font-size: 10px;
+}
+.select_articles .title {
+    background: rgba(255, 255, 255, 0.77);
+    font-size: 18px;
+    display: inline-block;
+    padding: 5px;
+    color: #000;
+}
+
+.article_width a{
+    color: white !important;
+}
+.loadfromcahe {
+    width: 100%;
+}

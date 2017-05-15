@@ -1,0 +1,1 @@
+<ul  <?php if (!empty($args['id'])): ?> id="<?= $args['id']; ?>" <?php endif; ?> class="connectedSortable">
