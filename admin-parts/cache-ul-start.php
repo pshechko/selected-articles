@@ -1,1 +1,1 @@
-<ul <?php if (!empty($args['id'])): ?> id="<?= $args['id']; ?>" <?php endif; ?> class="hidden cache" seleced-articles-role="cache">
+<ul <?php if (!empty($args['id'])): ?> id="<?= $args['id'] ?>" <?php endif ?> class="hidden cache" seleced-articles-role="cache">

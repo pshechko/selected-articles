@@ -1,1 +1,1 @@
-<button class="loadfromcahe" id="<?= $agrs['id']; ?>" >Load more</button>
+<button class="loadfromcahe" id="<?= $agrs['id'] ?>" >Load more</button>
