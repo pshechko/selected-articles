@@ -67,18 +67,18 @@ class SelectedArticlesWidget extends WP_Widget {
 
     public function unique_script($list, $selecred_list, $name, $number) {
         echo "<script>
-                                jQuery(function ($) {
+                jQuery(function ($) {
 
-                                    var number = '{$number}';
-                                    var args = {
-                                        list: '{$list}',
-                                        selected: '{$selecred_list}',
-                                        name: '{$name}'
-                                    };
-                                    
-                                    make_sortable(number, args);
-                                });
-                            </script>";
+                    var number = '{$number}';
+                    var args = {
+                        list: '{$list}',
+                        selected: '{$selecred_list}',
+                        name: '{$name}'
+                    };
+
+                    make_sortable(number, args);
+                });
+            </script>";
     }
 
     public function form_body($articles_query, $selected_articles_query, $articles_id, $selected_articles_id, $article_name, $cacheid) {
