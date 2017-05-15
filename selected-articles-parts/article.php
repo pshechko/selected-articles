@@ -1,3 +1,15 @@
+<?php 
+/*
+ * $args = [
+ *      'id' => Article id,
+ *      'title' => Article title,
+ *      'author' => Article author nice name,
+ *      'date' => Article date,
+ *      'image' => Article thumbnail uri,
+ *      'permalink' => Article permalink  
+ * ]
+ */ 
+?>
 <article class="post">
     <div class="media">
         <?php if (!empty($args['image'])): ?>
@@ -16,9 +28,9 @@
             </div>
             <?php if (!empty($args['title'])): ?>
                 <h3>
-                    <a href="<?= empty($args['redirect'])
+                    <a href="<?= empty($args['permalink'])
                             ? "#"
-                            : $args['redirect'] ?>">
+                            : $args['permalink'] ?>">
                         <?= $args['title'] ?>
                     </a>
                 </h3>

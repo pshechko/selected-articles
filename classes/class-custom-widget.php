@@ -160,7 +160,7 @@ class SelectedArticlesWidget extends WP_Widget {
                     "author" => $author,
                     "date" => $post_date,
                     "image" => $thumbnail_url,
-                    "redirect" => $permalink
+                    "permalink" => $permalink
                 ]);
             }
         }
