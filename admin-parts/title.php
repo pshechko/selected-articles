@@ -10,4 +10,4 @@
                type="text"
                value="<?= $args['title'] ?>" />
     </div>
-<?php endif ?>
+<?php endif; ?>

@@ -1,19 +1,3 @@
-jQuery(document).on('click', '[seleced-articles-role="cache"]', function (e) {
-    e.stopPropagation();
-    e.preventDefault();
-
-    var $this = jQuery(this),
-            $cache = $this.parent().next('.cache');
-
-    $cache
-            .children()
-            .slice(0, 10)
-            .insertBefore($this);
-
-    if (!$cache.children().length)
-        $this.remove();
-});
-
 function update_index(number, args) {
     if (number !== '__i__')
         return;
@@ -29,16 +13,39 @@ function update_index(number, args) {
     }
 }
 
-function make_sortable(number, args) {
-    
-    update_index(number, args);
-    
-    jQuery("#" + args.list + ", #" + args.selected).sortable({
-        connectWith: "#" + args.list + ", #" + args.selected,
+function add_listeners(jsparams) {
+    var ids = jsparams.ids;
+    var vars = jsparams.vars;
+    jQuery(document).on('click', '#'+ ids.wrapper +' [seleced-articles-role="cache"]', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        var $this = jQuery(this),
+                $cache = $this.parent().next('.cache');
+
+        $cache
+                .children()
+                .slice(0, vars.load_next)
+                .insertBefore($this);
+
+        if (!$cache.children().length)
+            $this.remove();
+    });
+}
+
+function init_tabs(jsparams){
+    jQuery( "#"+jsparams.ids.wrapper ).tabs();
+    console.log("#"+jsparams.ids.wrapper);
+}
+
+function make_sortable(jsparams) {
+    var ids = jsparams.ids;
+    jQuery("#" + ids.list +", #" + ids.selected).sortable({
+        connectWith: "#" + ids.list + ", #" + ids.selected,
         update: function (e, ui) {
-            jQuery('#' + args.list + ' [seleced-articles-role="input"]').removeAttr('name');
-            jQuery('#' + args.selected + ' [seleced-articles-role="input"]').each(function () {
-                jQuery(this).attr('name', args.name).val(jQuery(this).attr('article-id'));
+            jQuery('#' + ids.list + ' [seleced-articles-role="input"]').removeAttr('name');
+            jQuery('#' + ids.selected + ' [seleced-articles-role="input"]').each(function () {
+                jQuery(this).attr('name', ids.name).val(jQuery(this).attr('article-id'));
             });
         }
     }).disableSelection();
