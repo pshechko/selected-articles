@@ -8,6 +8,7 @@ $selected_articles_id = $this->get_field_id('selected_articles');
 $article_name = $this->get_field_name('articles[]');
 $cacheid = $this->get_field_name('cache');
 $loadmore = $this->get_field_id('loadfromcahe');
+$search = $this->get_field_id('search');
 
 $args = [
     'post_type' => 'post',
@@ -41,6 +42,10 @@ $this->get_admin_part('redirect', [
     'id' => $this->get_field_id('redirect'),
 ]);
 
+$this->get_admin_part('search', [
+    'id' => $search,
+]);
+
 $this->get_admin_part('head');
 
 $articles_query = new WP_Query($args);
@@ -56,7 +61,7 @@ $this->enqueue_admin_styles();
 $this->get_admin_part('el-start', [
     'element' => 'ul',
     'id' => $articles_id,
-    'class' => 'connectedSortable',
+    'class' => 'connectedSortable selected-articles-list',
         ]
 );
 
@@ -66,6 +71,7 @@ if ($articles_query->have_posts()) {
     while ($articles_query->have_posts()) {
         $articles_query->the_post();
         $has_thumbnail = has_post_thumbnail(get_the_ID());
+        $gmt_timestamp = get_post_time('U', true);
         if ($has_thumbnail) {
             $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'medium')[0];
         }
@@ -74,7 +80,8 @@ if ($articles_query->have_posts()) {
             'input-id' => $this->get_field_id(get_the_ID()),
             'title' => get_the_title(),
             'editlinlk' => get_edit_post_link(get_the_ID()),
-            'article-id' => get_the_ID()
+            'article-id' => get_the_ID(),
+            'date' => $gmt_timestamp
         ]);
         if (++$i === $this->per_page && $articles_query->post_count > $this->per_page) {
             $this->get_admin_part('loadmore', ['id' => $loadmore]);
@@ -97,7 +104,7 @@ $this->get_admin_part('el-end', ['element' => 'ul']);
 $this->get_admin_part('el-start', [
     'element' => 'ul',
     'id' => $selected_articles_id,
-    'class' => 'connectedSortable'
+    'class' => 'connectedSortable selected-articles-list-selected'
 ]);
 
 if (is_a($selected_articles_query, 'WP_Query') && $selected_articles_query->have_posts()) {
@@ -105,6 +112,8 @@ if (is_a($selected_articles_query, 'WP_Query') && $selected_articles_query->have
         $selected_articles_query->the_post();
         $has_thumbnail = has_post_thumbnail(get_the_ID());
         $thumbnail_url = $has_thumbnail ? wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()), 'medium')[0] : false;
+        $gmt_timestamp = get_post_time('U', true);
+        
         $this->get_admin_part('article', [
             'thumbnail' => $thumbnail_url,
             'input-id' => $this->get_field_id(get_the_ID()),
@@ -112,7 +121,8 @@ if (is_a($selected_articles_query, 'WP_Query') && $selected_articles_query->have
             'editlinlk' => get_edit_post_link(get_the_ID()),
             'article-id' => get_the_ID(),
             'value' => get_the_ID(),
-            'name' => $article_name
+            'name' => $article_name,
+            'date' => $gmt_timestamp
         ]);
     }
     wp_reset_postdata();
@@ -126,7 +136,8 @@ $this->add_js_ids([
     "list" => $articles_id,
     "selected" => $selected_articles_id,
     "name" => $article_name,
-    "loadmore" => $loadmore
+    "loadmore" => $loadmore,
+    "search" => $search
 ]);
 
 
