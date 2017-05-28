@@ -9,6 +9,7 @@ $article_name = $this->get_field_name('articles[]');
 $cacheid = $this->get_field_name('cache');
 $loadmore = $this->get_field_id('loadfromcahe');
 $search = $this->get_field_id('search');
+$hidden_trigger_change = $this->get_field_id('hidden-trigger-change');
 
 $args = [
     'post_type' => 'post',
@@ -44,6 +45,11 @@ $this->get_admin_part('redirect', [
 
 $this->get_admin_part('search', [
     'id' => $search,
+]);
+
+$this->get_admin_part('hidden_trigger_change', [
+    'id' => $hidden_trigger_change,
+    'name' => $this->get_field_name('hidden-trigger-change'),
 ]);
 
 $this->get_admin_part('head');
@@ -137,7 +143,8 @@ $this->add_js_ids([
     "selected" => $selected_articles_id,
     "name" => $article_name,
     "loadmore" => $loadmore,
-    "search" => $search
+    "search" => $search,
+    "hidden_trigger_change" => $hidden_trigger_change
 ]);
 
 

@@ -93,6 +93,9 @@ function init_tabs(jsparams) {
 
 function make_sortable(jsparams) {
     var ids = jsparams.ids;
+    var hidden_trigger_change = jQuery('#'+ids.hidden_trigger_change);
+   // console.log(hidden_trigger_change,hidden_trigger_change.val())
+
     jQuery("#" + ids.list + ", #" + ids.selected).sortable({
         connectWith: "#" + ids.list + ", #" + ids.selected,
         items: '> li:not(button)',
@@ -101,6 +104,7 @@ function make_sortable(jsparams) {
             jQuery('#' + ids.selected + ' [seleced-articles-role="input"]').each(function () {
                 jQuery(this).attr('name', ids.name).val(jQuery(this).attr('article-id'));
             });
+            hidden_trigger_change.val(parseInt(hidden_trigger_change.val()) + 1).trigger('change');
         }
     }).disableSelection();
 }
